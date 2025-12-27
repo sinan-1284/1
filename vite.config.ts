@@ -1,16 +1,19 @@
 import { defineConfig } from 'vite'
-import path from 'path'
-import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+// ✅ Fix for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 export default defineConfig({
-  base: '/1/',   // 👈 THIS IS THE IMPORTANT LINE
-
+  base: '/1/', // 🔥 required for GitHub Pages
   plugins: [
     react(),
     tailwindcss(),
   ],
-
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
